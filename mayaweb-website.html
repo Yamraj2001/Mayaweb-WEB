@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MayaWeb — We Edit. You Shine. | Professional Photo Editing Studio</title>
+<meta name="description" content="MayaWeb is a professional photo editing and retouching studio in Chandigarh, India. Background removal, portrait retouching, color grading and bulk editing for brands and photographers worldwide." />
+<meta name="theme-color" content="#0d1b2a" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=boska@400,500,700&f[]=general-sans@400,500,600,700&display=swap" />
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* Brand palette */
+  --ink: #0d1b2a;
+  --ink-soft: #13263a;
+  --gold: #f5a623;
+  --gold-deep: #d98a0c;
+  --gold-soft: #fbcf86;
+
+  /* Light theme surfaces */
+  --color-bg: #fafaf8;
+  --color-surface: #f2f0ec;
+  --color-surface-2: #ffffff;
+  --color-elevated: #ffffff;
+  --color-headline: #0d1b2a;
+  --color-text: #1a1a2e;
+  --color-muted: #6b7280;
+  --color-faint: #c4c4c4;
+  --color-border: rgba(13, 27, 42, 0.10);
+  --color-border-strong: rgba(13, 27, 42, 0.18);
+  --color-accent: var(--gold);
+  --color-accent-text: #1a1a2e;
+  --color-on-ink: #f3efe8;
+  --shadow-sm: 0 1px 2px rgba(13,27,42,0.06), 0 2px 6px rgba(13,27,42,0.05);
+  --shadow-md: 0 8px 24px rgba(13,27,42,0.10);
+  --shadow-lg: 0 24px 60px rgba(13,27,42,0.16);
+  --glow-gold: 0 0 0 1px var(--gold), 0 18px 50px rgba(245,166,35,0.28);
+
+  --maxw: 1240px;
+  --gutter: clamp(20px, 5vw, 64px);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --radius-lg: 28px;
+
+  --text-hero: clamp(2.6rem, 6.4vw, 5.4rem);
+  --text-display: clamp(2rem, 4.4vw, 3.4rem);
+  --text-title: clamp(1.5rem, 2.6vw, 2.1rem);
+
+  --font-display: "Boska", Georgia, "Times New Roman", serif;
+  --font-body: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="dark"] {
+  --color-bg: #0a0a0f;
+  --color-surface: #11121a;
+  --color-surface-2: #14151f;
+  --color-elevated: #161722;
+  --color-headline: #f6f3ec;
+  --color-text: #e7e4dc;
+  --color-muted: #9aa0ad;
+  --color-faint: #4b4f5a;
+  --color-border: rgba(255,255,255,0.10);
+  --color-border-strong: rgba(255,255,255,0.18);
+  --color-on-ink: #f3efe8;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md: 0 10px 30px rgba(0,0,0,0.5);
+  --shadow-lg: 0 28px 70px rgba(0,0,0,0.6);
+  --glow-gold: 0 0 0 1px var(--gold), 0 18px 60px rgba(245,166,35,0.22);
+}
+
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: 1.0625rem;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+ul { list-style: none; padding: 0; }
+h1,h2,h3,h4 { font-family: var(--font-display); color: var(--color-headline); line-height: 1.05; font-weight: 700; letter-spacing: -0.01em; }
+:focus-visible { outline: 2.5px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: clamp(64px, 9vw, 132px); }
+.eyebrow {
+  font-family: var(--font-body); font-weight: 600; font-size: 0.8rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-deep);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+[data-theme="dark"] .eyebrow { color: var(--gold); }
+.eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--gold); display: inline-block; }
+.section-head { max-width: 720px; margin-bottom: clamp(36px, 5vw, 60px); }
+.section-head h2 { font-size: var(--text-display); margin: 18px 0 14px; }
+.section-head p { color: var(--color-muted); font-size: 1.1rem; max-width: 60ch; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.98rem;
+  padding: 14px 26px; border-radius: 999px; transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease); white-space: nowrap; }
+.btn svg { width: 18px; height: 18px; }
+.btn-gold { background: var(--gold); color: #14110a; box-shadow: var(--shadow-sm); }
+.btn-gold:hover { transform: translateY(-2px); box-shadow: var(--glow-gold); background: var(--gold-soft); }
+.btn-ink { background: var(--ink); color: var(--color-on-ink); }
+[data-theme="dark"] .btn-ink { background: var(--color-surface-2); border: 1px solid var(--color-border-strong); }
+.btn-ink:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-ghost { border: 1.5px solid var(--color-border-strong); color: var(--color-headline); }
+.btn-ghost:hover { transform: translateY(-2px); border-color: var(--gold); color: var(--gold-deep); }
+[data-theme="dark"] .btn-ghost:hover { color: var(--gold); }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: saturate(140%) blur(14px);
+  background: color-mix(in srgb, var(--color-bg) 78%, transparent);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s var(--ease), background .3s var(--ease);
+}
+.nav.scrolled { border-color: var(--color-border); box-shadow: var(--shadow-sm); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.brand { display: flex; align-items: center; gap: 11px; font-family: var(--font-body); }
+.brand .mark { width: 34px; height: 34px; flex: none; }
+.brand .word { font-weight: 600; font-size: 1.22rem; letter-spacing: -0.02em; color: var(--color-headline); }
+.brand .word b { color: var(--gold-deep); font-weight: 700; }
+[data-theme="dark"] .brand .word b { color: var(--gold); }
+
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { padding: 9px 14px; border-radius: 10px; font-weight: 500; font-size: 0.97rem; color: var(--color-text); transition: color .2s, background .2s; }
+.nav-links a:hover { color: var(--gold-deep); background: var(--color-surface); }
+[data-theme="dark"] .nav-links a:hover { color: var(--gold); }
+
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.theme-toggle { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--color-border); background: var(--color-surface-2); transition: transform .3s var(--ease), border-color .2s; }
+.theme-toggle:hover { transform: rotate(18deg); border-color: var(--gold); }
+.theme-toggle svg { width: 19px; height: 19px; }
+.theme-toggle .moon { display: none; }
+[data-theme="dark"] .theme-toggle .sun { display: none; }
+[data-theme="dark"] .theme-toggle .moon { display: block; }
+
+.hamburger { display: none; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--color-border); place-items: center; background: var(--color-surface-2); }
+.hamburger svg { width: 22px; height: 22px; }
+
+/* Mobile overlay */
+.mobile-menu { position: fixed; inset: 0; z-index: 200; background: var(--ink); color: var(--color-on-ink);
+  display: flex; flex-direction: column; padding: 28px var(--gutter); transform: translateY(-100%);
+  transition: transform .45s var(--ease); visibility: hidden; }
+.mobile-menu.open { transform: translateY(0); visibility: visible; }
+.mobile-menu .mm-top { display: flex; justify-content: space-between; align-items: center; }
+.mobile-menu .mm-close { width: 46px; height: 46px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18); display: grid; place-items: center; color: var(--color-on-ink); }
+.mobile-menu nav { margin-top: 40px; display: flex; flex-direction: column; gap: 4px; }
+.mobile-menu nav a { font-family: var(--font-display); font-size: clamp(2rem, 9vw, 3rem); padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08); color: #fff; }
+.mobile-menu nav a:hover { color: var(--gold); }
+.mobile-menu .mm-cta { margin-top: auto; padding-top: 28px; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero { position: relative; background: var(--ink); color: var(--color-on-ink); overflow: hidden;
+  padding-block: clamp(56px, 8vw, 110px); }
+.hero::before { /* grain */
+  content: ""; position: absolute; inset: 0; opacity: 0.5; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+}
+.hero::after { content: ""; position: absolute; width: 620px; height: 620px; right: -180px; top: -200px;
+  background: radial-gradient(circle, rgba(245,166,35,0.16), transparent 62%); pointer-events: none; }
+.hero-grid { position: relative; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(36px, 5vw, 72px); align-items: center; }
+.hero-copy { max-width: 620px; }
+.hero .pill { display: inline-flex; align-items: center; gap: 9px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em;
+  padding: 7px 14px; border-radius: 999px; background: rgba(245,166,35,0.12); color: var(--gold-soft); border: 1px solid rgba(245,166,35,0.25); }
+.hero .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(245,166,35,0.25); }
+.hero h1 { font-size: var(--text-hero); color: #fff; margin: 22px 0 20px; letter-spacing: -0.02em; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-sub { font-size: clamp(1.05rem, 1.6vw, 1.22rem); color: rgba(243,239,232,0.78); max-width: 52ch; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+
+/* Before/After slider */
+.ba { position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);
+  aspect-ratio: 4/5; user-select: none; touch-action: pan-y; border: 1px solid rgba(255,255,255,0.08); }
+.ba .ba-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ba .after { filter: saturate(1.18) contrast(1.08) brightness(1.04); }
+.ba .before-wrap { position: absolute; inset: 0; width: 50%; overflow: hidden; }
+.ba .before-wrap .ba-img { width: 200%; max-width: none; filter: saturate(0.35) brightness(0.82) contrast(0.9); }
+.ba .label { position: absolute; top: 14px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 6px 11px; border-radius: 999px; backdrop-filter: blur(6px); }
+.ba .label.l-before { left: 14px; background: rgba(10,10,15,0.6); color: #fff; }
+.ba .label.l-after { right: 14px; background: var(--gold); color: #14110a; }
+.ba .handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: #fff; transform: translateX(-50%); cursor: ew-resize; }
+.ba .handle::after { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 46px; height: 46px; border-radius: 50%; background: #fff; box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%230d1b2a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15 18-6-6 6-6'/%3E%3Cpath d='m9 6 6 6-6 6' transform='translate(0)'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 22px; }
+.ba input[type=range] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+
+/* Stats bar */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.10); border-radius: var(--radius); overflow: hidden; margin-top: clamp(40px, 5vw, 64px); position: relative; }
+.stats .stat { background: var(--ink-soft); padding: 24px 20px; text-align: center; }
+.stats .stat .num { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 3.4vw, 2.8rem); color: var(--gold); line-height: 1; }
+.stats .stat .lbl { font-size: 0.82rem; color: rgba(243,239,232,0.7); margin-top: 8px; letter-spacing: 0.02em; }
+
+/* ============================================================
+   SERVICES (bento)
+   ============================================================ */
+.services-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; grid-auto-rows: 1fr; gap: 18px; }
+.svc { background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius);
+  padding: 28px; display: flex; flex-direction: column; transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s; }
+.svc:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--color-border-strong); }
+.svc .ico { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: var(--ink); color: var(--gold); margin-bottom: 18px; }
+[data-theme="dark"] .svc .ico { background: rgba(245,166,35,0.10); }
+.svc .ico svg { width: 25px; height: 25px; }
+.svc h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.svc p { color: var(--color-muted); font-size: 0.98rem; }
+.svc.feature { grid-row: span 2; background: var(--ink); color: var(--color-on-ink); position: relative; overflow: hidden; justify-content: flex-end; }
+.svc.feature h3, .svc.feature { color: #fff; }
+.svc.feature p { color: rgba(243,239,232,0.78); }
+.svc.feature .ico { background: var(--gold); color: #14110a; }
+.svc.feature .feature-art { position: absolute; inset: 0; opacity: 0.34; object-fit: cover; width: 100%; height: 100%; }
+.svc.feature .feature-veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,27,42,0.55), rgba(13,27,42,0.96)); }
+.svc.feature .feature-inner { position: relative; }
+.svc .tag { margin-top: 16px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-deep); }
+[data-theme="dark"] .svc .tag { color: var(--gold); }
+
+/* ============================================================
+   PORTFOLIO (bento)
+   ============================================================ */
+.portfolio-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 16px; }
+.pcard { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--color-surface); border: 1px solid var(--color-border); }
+.pcard img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.pcard:hover img { transform: scale(1.05); }
+.pcard .badge { position: absolute; top: 14px; left: 14px; z-index: 3; background: var(--gold); color: #14110a;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; padding: 6px 12px; border-radius: 999px; text-transform: uppercase; }
+.pcard .pover { position: absolute; inset: 0; z-index: 2; display: flex; align-items: flex-end; padding: 18px;
+  background: linear-gradient(0deg, rgba(13,27,42,0.82) 0%, rgba(13,27,42,0) 55%); opacity: 0; transition: opacity .4s var(--ease); }
+.pcard:hover .pover { opacity: 1; }
+.pcard .pover h4 { color: #fff; font-size: 1.15rem; }
+.pcard.big { grid-column: span 2; grid-row: span 2; }
+.pcard.wide { grid-column: span 2; }
+/* portfolio before/after mini */
+.pcard.ba-card .before-wrap { position: absolute; inset: 0; width: 50%; overflow: hidden; z-index: 1; }
+.pcard.ba-card .before-wrap img { width: 200%; max-width: none; filter: saturate(0.3) brightness(0.8); }
+.pcard.ba-card .after { filter: saturate(1.15) contrast(1.06); }
+.pcard.ba-card .handle { position: absolute; top:0; bottom:0; left:50%; width:3px; background:#fff; z-index:4; transform: translateX(-50%); }
+.pcard.ba-card .handle::after { content:""; position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); width:38px;height:38px;border-radius:50%; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%230d1b2a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15 18-6-6 6-6'/%3E%3Cpath d='m9 6 6 6-6 6'/%3E%3C/svg%3E") center/18px no-repeat; box-shadow:0 4px 14px rgba(0,0,0,.35); }
+.pcard.ba-card input[type=range] { position:absolute; inset:0; width:100%;height:100%; opacity:0; z-index:5; cursor: ew-resize; margin:0; }
+.portfolio-cta { display: flex; justify-content: center; margin-top: 40px; }
+
+/* ============================================================
+   PROCESS
+   ============================================================ */
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; }
+.pstep { position: relative; padding-top: 8px; }
+.pstep .pnum { font-family: var(--font-display); font-weight: 700; font-size: 3.4rem; color: var(--gold);
+  line-height: 1; -webkit-text-stroke: 0; }
+.pstep h3 { font-size: 1.22rem; margin: 14px 0 10px; }
+.pstep p { color: var(--color-muted); font-size: 0.97rem; }
+.pstep:not(:last-child)::after { content: ""; position: absolute; top: 26px; left: 64px; right: -20px; height: 2px;
+  background-image: linear-gradient(90deg, var(--color-border-strong) 50%, transparent 50%); background-size: 12px 2px; }
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.tcarousel { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 4px 24px;
+  scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.tcarousel::-webkit-scrollbar { height: 8px; }
+.tcarousel::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 99px; }
+.tcard { scroll-snap-align: start; flex: 0 0 min(380px, 84vw); background: var(--color-surface-2); border: 1px solid var(--color-border);
+  border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; }
+.tcard .stars { display: flex; gap: 3px; color: var(--gold); margin-bottom: 16px; }
+.tcard .stars svg { width: 18px; height: 18px; fill: var(--gold); }
+.tcard blockquote { font-size: 1.05rem; color: var(--color-text); line-height: 1.55; flex: 1; }
+.tcard .who { display: flex; align-items: center; gap: 13px; margin-top: 22px; }
+.tcard .avatar { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-weight: 700;
+  font-family: var(--font-display); background: var(--ink); color: var(--gold); flex: none; }
+.tcard .who .nm { font-weight: 600; color: var(--color-headline); }
+.tcard .who .rl { font-size: 0.85rem; color: var(--color-muted); }
+.carousel-hint { font-size: 0.85rem; color: var(--color-muted); margin-top: 4px; }
+
+/* ============================================================
+   PRICING
+   ============================================================ */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
+.price { background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+  padding: 32px 30px; display: flex; flex-direction: column; transition: transform .35s var(--ease); position: relative; }
+.price:hover { transform: translateY(-6px); }
+.price .ptier { font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.84rem; color: var(--color-muted); }
+.price .pamt { font-family: var(--font-display); font-weight: 700; font-size: 3rem; color: var(--gold); margin: 14px 0 4px; line-height: 1; }
+.price .pamt small { font-family: var(--font-body); font-size: 1rem; color: var(--color-muted); font-weight: 500; }
+.price .pdesc { color: var(--color-muted); font-size: 0.95rem; margin-bottom: 22px; min-height: 42px; }
+.price ul { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; flex: 1; }
+.price ul li { display: flex; gap: 11px; align-items: flex-start; font-size: 0.96rem; }
+.price ul li svg { width: 19px; height: 19px; color: var(--gold-deep); flex: none; margin-top: 2px; }
+[data-theme="dark"] .price ul li svg { color: var(--gold); }
+.price .btn { width: 100%; justify-content: center; }
+.price.popular { border: 1.5px solid var(--gold); box-shadow: var(--glow-gold); background: var(--color-elevated); }
+.price .popular-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--gold);
+  color: #14110a; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; }
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-list { max-width: 820px; }
+.faq { border-bottom: 1px solid var(--color-border); }
+.faq button.q { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  text-align: left; padding: 24px 4px; font-family: var(--font-display); font-size: 1.18rem; color: var(--color-headline); font-weight: 500; }
+.faq .chev { flex: none; width: 26px; height: 26px; transition: transform .35s var(--ease); color: var(--gold-deep); }
+[data-theme="dark"] .faq .chev { color: var(--gold); }
+.faq.open .chev { transform: rotate(180deg); }
+.faq .a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s var(--ease); }
+.faq.open .a { grid-template-rows: 1fr; }
+.faq .a > div { overflow: hidden; }
+.faq .a p { color: var(--color-muted); padding: 0 4px 24px; max-width: 70ch; }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+.about-copy p { color: var(--color-muted); margin-bottom: 16px; font-size: 1.05rem; }
+.about-copy .pillars { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.about-copy .pillars span { font-weight: 600; color: var(--color-headline); background: var(--color-surface);
+  border: 1px solid var(--color-border); padding: 9px 16px; border-radius: 999px; font-size: 0.92rem; }
+.about-copy .pillars span b { color: var(--gold-deep); }
+[data-theme="dark"] .about-copy .pillars span b { color: var(--gold); }
+.collage { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; gap: 14px; }
+.collage img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
+.collage img:nth-child(1) { grid-row: span 2; }
+.collage img:nth-child(4) { grid-column: span 2; }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact { background: var(--ink); color: var(--color-on-ink); }
+.contact .section-head h2, .contact .eyebrow { color: #fff; }
+.contact .eyebrow { color: var(--gold-soft); }
+.contact-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(36px, 5vw, 72px); }
+.cinfo h3 { color: #fff; font-size: 1.5rem; margin-bottom: 8px; }
+.cinfo p.lead { color: rgba(243,239,232,0.72); margin-bottom: 28px; }
+.cinfo .crow { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
+.cinfo .crow .ci { width: 42px; height: 42px; border-radius: 12px; background: rgba(245,166,35,0.12); color: var(--gold);
+  display: grid; place-items: center; flex: none; }
+.cinfo .crow .ci svg { width: 19px; height: 19px; }
+.cinfo .crow .ct b { display: block; color: #fff; font-weight: 600; }
+.cinfo .crow .ct span { color: rgba(243,239,232,0.7); font-size: 0.95rem; }
+.csocials { display: flex; gap: 12px; margin-top: 8px; }
+.csocials a { width: 44px; height: 44px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.16); display: grid; place-items: center; color: #fff; transition: background .25s, color .25s, transform .25s; }
+.csocials a:hover { background: var(--gold); color: #14110a; transform: translateY(-3px); }
+.csocials a svg { width: 20px; height: 20px; }
+
+.cform { background: var(--color-surface-2); border-radius: var(--radius-lg); padding: clamp(24px, 3vw, 38px);
+  color: var(--color-text); box-shadow: var(--shadow-lg); }
+[data-theme="light"] .cform { background: #fff; }
+.cform .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 0.86rem; font-weight: 600; color: var(--color-text); margin-bottom: 7px; }
+.field label .req { color: var(--gold-deep); }
+.field input, .field select, .field textarea { width: 100%; padding: 12px 14px; border-radius: 11px; border: 1px solid var(--color-border-strong);
+  background: var(--color-bg); color: var(--color-text); font: inherit; font-size: 0.97rem; transition: border-color .2s, box-shadow .2s; }
+.field textarea { resize: vertical; min-height: 96px; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(245,166,35,0.18); }
+.cform .btn { width: 100%; justify-content: center; margin-top: 6px; }
+.form-note { font-size: 0.84rem; color: var(--color-muted); text-align: center; margin-top: 14px; }
+.form-success { display: none; text-align: center; padding: 30px 10px; }
+.form-success.show { display: block; }
+.form-success svg { width: 56px; height: 56px; color: var(--gold-deep); margin-bottom: 14px; }
+[data-theme="dark"] .form-success svg { color: var(--gold); }
+.form-success h3 { font-size: 1.5rem; margin-bottom: 8px; }
+.form-success p { color: var(--color-muted); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer { background: var(--color-surface); border-top: 1px solid var(--color-border); padding-block: 56px 28px; }
+.footer-top { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; margin-bottom: 40px; }
+.footer .fbrand p { color: var(--color-muted); margin-top: 14px; max-width: 32ch; font-size: 0.96rem; }
+.footer .fcol h4 { font-family: var(--font-body); font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 16px; font-weight: 600; }
+.footer .fcol a { display: block; padding: 6px 0; color: var(--color-text); font-size: 0.96rem; transition: color .2s; }
+.footer .fcol a:hover { color: var(--gold-deep); }
+[data-theme="dark"] .footer .fcol a:hover { color: var(--gold); }
+.footer-bottom { display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--color-border); padding-top: 24px; color: var(--color-muted); font-size: 0.9rem; }
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal[data-delay="1"] { transition-delay: .08s; }
+.reveal[data-delay="2"] { transition-delay: .16s; }
+.reveal[data-delay="3"] { transition-delay: .24s; }
+.reveal[data-delay="4"] { transition-delay: .32s; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .hamburger { display: grid; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero .ba { max-width: 460px; margin-inline: auto; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .svc.feature { grid-row: span 2; }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+  .pcard.big { grid-column: span 2; }
+  .process-grid { grid-template-columns: 1fr 1fr; row-gap: 36px; }
+  .pstep::after { display: none; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; }
+  .about-grid, .contact-grid, .footer-top { grid-template-columns: 1fr; }
+  .footer-top { gap: 28px; }
+}
+@media (max-width: 600px) {
+  .stats { grid-template-columns: 1fr 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .svc.feature { grid-row: auto; }
+  .portfolio-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+  .pcard.big, .pcard.wide { grid-column: span 1; grid-row: span 1; }
+  .process-grid { grid-template-columns: 1fr; }
+  .cform .frow { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .collage { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#home" aria-label="MayaWeb home">
+      <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M5 33 L17 7 L23 20 L20 27 L13 27 Z" fill="#f5a623"/>
+        <path d="M35 33 L23 7 L17 20 L20 27 L27 27 Z" fill="#f5a623" opacity="0.62"/>
+      </svg>
+      <span class="word">Maya<b>Web</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#about">About</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+      <a href="#contact" class="btn btn-gold" style="padding:11px 20px;">Get a Free Quote</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== MOBILE MENU ===================== -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-top">
+    <span class="brand"><svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M5 33 L17 7 L23 20 L20 27 L13 27 Z" fill="#f5a623"/><path d="M35 33 L23 7 L17 20 L20 27 L27 27 Z" fill="#f5a623" opacity="0.62"/></svg><span class="word" style="color:#fff">Maya<b style="color:#f5a623">Web</b></span></span>
+    <button class="mm-close" id="mmClose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#about">About</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="mm-cta"><a href="#contact" class="btn btn-gold" style="width:100%;justify-content:center;">Get a Free Quote →</a></div>
+</div>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy reveal in">
+        <span class="pill"><span class="dot"></span> We Edit. You Shine.</span>
+        <h1>We Turn Good Photos Into <em>Unforgettable</em> Visuals</h1>
+        <p class="hero-sub">Professional photo editing for e-commerce brands, photographers, and businesses that refuse to look ordinary. Drag the slider — that's our work, not a mockup.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-gold">Start Your Project →</a>
+          <a href="#portfolio" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,0.3)">View Portfolio</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal in" data-delay="1">
+        <div class="ba" data-ba>
+          <img class="ba-img after" alt="Edited product photo of a perfume bottle, vibrant and color-graded" loading="eager"
+               src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=900&q=80"
+               onerror="this.closest('.ba').classList.add('img-fail')"/>
+          <div class="before-wrap">
+            <img class="ba-img" alt="Raw unedited version of the same photo" loading="eager"
+                 src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=900&q=80"/>
+          </div>
+          <span class="label l-before">Before</span>
+          <span class="label l-after">After</span>
+          <div class="handle"></div>
+          <input type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after" />
+        </div>
+      </div>
+    </div>
+
+    <div class="stats reveal" id="stats">
+      <div class="stat"><div class="num" data-count="40000" data-suffix="+">0</div><div class="lbl">Images Edited</div></div>
+      <div class="stat"><div class="num" data-count="10000" data-suffix="+">0</div><div class="lbl">Happy Clients</div></div>
+      <div class="stat"><div class="num" data-count="15" data-suffix="+">0</div><div class="lbl">Pro Editors</div></div>
+      <div class="stat"><div class="num" data-count="5" data-suffix="+">0</div><div class="lbl">Years Experience</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What We Do</span>
+      <h2>What We Do Best</h2>
+      <p>From a single hero shot to ten thousand catalog SKUs — pixel-perfect editing handled by people who care about light, tone and detail.</p>
+    </div>
+    <div class="services-grid">
+      <article class="svc feature reveal">
+        <img class="feature-art" src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=900&q=80" alt="Product photography being edited" loading="lazy" onerror="this.style.display='none'"/>
+        <div class="feature-veil"></div>
+        <div class="feature-inner">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/></svg></div>
+          <h3>Product Photo Editing</h3>
+          <p>Background removal, color correction and natural shadow creation built for Amazon, Flipkart and Shopify. Clean, consistent, conversion-ready catalog imagery at any scale.</p>
+          <div class="tag">Our flagship service</div>
+        </div>
+      </article>
+
+      <article class="svc reveal" data-delay="1">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/></svg></div>
+        <h3>Portrait Retouching</h3>
+        <p>Skin smoothing, blemish removal and natural, professional-grade retouching — flattering, never plastic.</p>
+      </article>
+
+      <article class="svc reveal" data-delay="2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="19" cy="13" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="10" cy="20" r="2.5"/><path d="M12 2a10 10 0 0 0 0 20"/></svg></div>
+        <h3>Color Grading</h3>
+        <p>Cinematic, LUT-style color work that locks your visuals to a consistent brand aesthetic.</p>
+      </article>
+
+      <article class="svc reveal" data-delay="1">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 16 4-4 3 3 5-6"/></svg></div>
+        <h3>Bulk / High-Volume</h3>
+        <p>Fast, reliable turnaround for 100–10,000+ image batches with consistent output across the set.</p>
+      </article>
+
+      <article class="svc reveal" data-delay="2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg></div>
+        <h3>Real Estate Editing</h3>
+        <p>Sky replacement, brightness correction and virtual staging that makes spaces sell faster.</p>
+      </article>
+
+      <article class="svc reveal" data-delay="3">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2 7.5 7.5 2 9l5.5 1.5L9 16l1.5-5.5L16 9l-5.5-1.5z"/><circle cx="18" cy="18" r="3"/></svg></div>
+        <h3>Clipping Path & Masking</h3>
+        <p>Precise hand-drawn object isolation for catalogs, ads and design teams — every edge perfect.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PORTFOLIO ===================== -->
+<section class="section" id="portfolio" style="background:var(--color-surface)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Selected Work</span>
+      <h2>Our Work Speaks</h2>
+      <p>A few before / after results across the categories we handle daily. Drag the sliders on the large cards to compare.</p>
+    </div>
+    <div class="portfolio-grid">
+      <!-- big BA -->
+      <article class="pcard big ba-card reveal" data-ba>
+        <span class="badge">Product Editing</span>
+        <img class="ba-img after" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80" alt="Edited sneaker product shot" loading="lazy" onerror="this.closest('.pcard').classList.add('img-fail')"/>
+        <div class="before-wrap"><img class="ba-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80" alt="Raw sneaker shot" loading="lazy"/></div>
+        <div class="handle"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Compare before and after product edit"/>
+      </article>
+      <!-- medium -->
+      <article class="pcard reveal" data-delay="1">
+        <span class="badge">Jewelry</span>
+        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80" alt="Macro jewelry editing" loading="lazy" onerror="this.parentElement.classList.add('img-fail')"/>
+        <div class="pover"><h4>Macro Detail Retouch</h4></div>
+      </article>
+      <article class="pcard reveal" data-delay="2">
+        <span class="badge">Food</span>
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Food photography color grade" loading="lazy" onerror="this.parentElement.classList.add('img-fail')"/>
+        <div class="pover"><h4>Appetite Color Grade</h4></div>
+      </article>
+      <!-- big BA portrait -->
+      <article class="pcard big ba-card reveal" data-ba data-delay="1">
+        <span class="badge">Portrait Retouching</span>
+        <img class="ba-img after" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80" alt="Retouched portrait" loading="lazy" onerror="this.closest('.pcard').classList.add('img-fail')"/>
+        <div class="before-wrap"><img class="ba-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80" alt="Raw portrait" loading="lazy"/></div>
+        <div class="handle"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Compare before and after portrait retouch"/>
+      </article>
+      <article class="pcard reveal" data-delay="2">
+        <span class="badge">Real Estate</span>
+        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=80" alt="Real estate interior editing" loading="lazy" onerror="this.parentElement.classList.add('img-fail')"/>
+        <div class="pover"><h4>Interior Brighten + Sky</h4></div>
+      </article>
+      <article class="pcard reveal" data-delay="3">
+        <span class="badge">Apparel</span>
+        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=600&q=80" alt="Clothing flat lay editing" loading="lazy" onerror="this.parentElement.classList.add('img-fail')"/>
+        <div class="pover"><h4>Flat-Lay Cleanup</h4></div>
+      </article>
+    </div>
+    <div class="portfolio-cta reveal"><a href="#contact" class="btn btn-ink">See Full Portfolio →</a></div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How It Works</span>
+      <h2>Simple Process. Stunning Results.</h2>
+      <p>No friction, no jargon. From upload to final delivery in four clear steps.</p>
+    </div>
+    <div class="process-grid">
+      <div class="pstep reveal"><div class="pnum">01</div><h3>Upload Your Files</h3><p>Share images via Google Drive, WeTransfer or our upload portal — whatever's easiest for you.</p></div>
+      <div class="pstep reveal" data-delay="1"><div class="pnum">02</div><h3>Brief Our Team</h3><p>Tell us your style, editing requirements and deadline. We confirm scope before we start.</p></div>
+      <div class="pstep reveal" data-delay="2"><div class="pnum">03</div><h3>We Edit & Review</h3><p>Our editors work their magic. You get a preview to approve before final delivery.</p></div>
+      <div class="pstep reveal" data-delay="3"><div class="pnum">04</div><h3>Download & Done</h3><p>Receive polished, high-res files in the formats you need — ready to publish anywhere.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="section" id="testimonials" style="background:var(--color-surface)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Testimonials</span>
+      <h2>Loved by Creators Worldwide</h2>
+      <p>10,000+ clients across 20+ countries. Here's what a few of them say.</p>
+      <p class="carousel-hint">← Scroll to read more →</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="tcarousel">
+      <article class="tcard reveal">
+        <div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <blockquote>"MayaWeb turned my entire catalog shoot around in 48 hours. The retouching is subtle, clean, and exactly on-brand."</blockquote>
+        <div class="who"><div class="avatar">PS</div><div><div class="nm">Priya Sharma</div><div class="rl">Fashion Photographer, Mumbai</div></div></div>
+      </article>
+      <article class="tcard reveal" data-delay="1">
+        <div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <blockquote>"Background removal at this scale (500+ images) and this quality? Incredible. We've used them for 3 years straight."</blockquote>
+        <div class="who"><div class="avatar">JM</div><div><div class="nm">James Miller</div><div class="rl">E-Commerce Store Owner, UK</div></div></div>
+      </article>
+      <article class="tcard reveal" data-delay="2">
+        <div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <blockquote>"My feed looks 10x more polished since I started working with them. Fast, affordable, and they just get my vibe."</blockquote>
+        <div class="who"><div class="avatar">SK</div><div><div class="nm">Sneha Kapoor</div><div class="rl">Instagram Influencer, Delhi</div></div></div>
+      </article>
+      <article class="tcard reveal" data-delay="3">
+        <div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <blockquote>"The color correction is genuinely excellent. They understand light and tone better than most studios I've hired."</blockquote>
+        <div class="who"><div class="avatar">DC</div><div><div class="nm">David Chen</div><div class="rl">Product Photographer, Singapore</div></div></div>
+      </article>
+      <article class="tcard reveal" data-delay="4">
+        <div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <blockquote>"Bulk editing of 1,200 SKU images in 4 days. On-time, on-spec. These guys are genuinely reliable."</blockquote>
+        <div class="who"><div class="avatar">AR</div><div><div class="nm">Ananya Roy</div><div class="rl">Brand Manager, Flipkart Seller</div></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRICING ===================== -->
+<section class="section" id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2>Transparent Pricing. No Surprises.</h2>
+      <p>Pay per image, scale up any time. Volume discounts kick in automatically on larger batches.</p>
+    </div>
+    <div class="pricing-grid">
+      <article class="price reveal">
+        <div class="ptier">Starter</div>
+        <div class="pamt">₹15<small> / image</small></div>
+        <p class="pdesc">Background removal and basic corrections. Minimum 10 images.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Background removal</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Basic color correction</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 48–72 hr turnaround</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 1 free revision</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Choose Starter</a>
+      </article>
+
+      <article class="price popular reveal" data-delay="1">
+        <span class="popular-badge">Most Popular</span>
+        <div class="ptier">Professional</div>
+        <div class="pamt">₹35<small> / image</small></div>
+        <p class="pdesc">Full retouching, color grading, shadows & reflections. Minimum 5 images.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Everything in Starter</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Full retouching & cleanup</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Color grading + shadows</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 24–48 hr turnaround</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 3 free revisions</li>
+        </ul>
+        <a href="#contact" class="btn btn-gold">Choose Professional</a>
+      </article>
+
+      <article class="price reveal" data-delay="2">
+        <div class="ptier">Enterprise</div>
+        <div class="pamt">Custom</div>
+        <p class="pdesc">Bulk orders of 500+, dedicated editor and account manager.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Everything in Professional</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Bulk orders 500+ images</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Dedicated editor</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 24 hr guaranteed turnaround</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Dedicated account manager</li>
+        </ul>
+        <a href="#contact" class="btn btn-ink">Talk to Sales</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="section" id="about" style="background:var(--color-surface)">
+  <div class="wrap about-grid">
+    <div class="about-copy reveal">
+      <span class="eyebrow">About MayaWeb</span>
+      <h2 style="font-size:var(--text-display);margin:18px 0 20px;">A Team of Perfectionists in Chandigarh</h2>
+      <p>MayaWeb began with a simple frustration: great photos being let down by rushed, careless editing. So we built a studio that treats every pixel seriously — in Chandigarh's IT Park, serving brands and photographers around the world.</p>
+      <p>Over five years we've edited more than 40,000 images for 10,000+ clients across 20+ countries. From single hero shots to 10,000-image catalogs, our 15+ editors deliver work that's consistent, natural and on-brand — never over-processed.</p>
+      <p>We're not the cheapest, and we don't try to be. We're the studio you call when the result actually matters and the deadline is real.</p>
+      <div class="pillars">
+        <span><b>Precision</b> over speed</span>
+        <span>No filters, just <b>skill</b></span>
+        <span>Your <b>deadline</b> is sacred</span>
+      </div>
+    </div>
+    <div class="collage reveal" data-delay="1">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="MayaWeb editing team collaborating" loading="lazy" onerror="this.style.display='none'"/>
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=500&q=80" alt="Editor reviewing photos on screen" loading="lazy" onerror="this.style.display='none'"/>
+      <img src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=500&q=80" alt="Studio workspace" loading="lazy" onerror="this.style.display='none'"/>
+      <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=700&q=80" alt="Editing workstation setup" loading="lazy" onerror="this.style.display='none'"/>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Common Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq reveal">
+        <button class="q" aria-expanded="false">What file formats do you accept and deliver?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="a"><div><p>We accept JPG, PNG, TIFF, PSD, RAW (CR2, NEF, ARW and more) and HEIC. We deliver in whatever format you need — including layered PSDs, transparent PNGs, and print-ready TIFFs.</p></div></div>
+      </div>
+      <div class="faq reveal">
+        <button class="q" aria-expanded="false">How fast is your turnaround time?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="a"><div><p>Standard turnaround is 24–72 hours depending on volume and complexity. Enterprise clients get a guaranteed 24-hour turnaround, and rush options are available for urgent projects.</p></div></div>
+      </div>
+      <div class="faq reveal">
+        <button class="q" aria-expanded="false">Can I request revisions?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="a"><div><p>Absolutely. Every plan includes free revisions (1 on Starter, 3 on Professional, unlimited within scope on Enterprise). We want the result to be exactly right.</p></div></div>
+      </div>
+      <div class="faq reveal">
+        <button class="q" aria-expanded="false">Do you handle bulk orders?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="a"><div><p>Yes — bulk and high-volume work is one of our specialties. We routinely handle 100 to 10,000+ image batches with consistent style and quality across the entire set.</p></div></div>
+      </div>
+      <div class="faq reveal">
+        <button class="q" aria-expanded="false">Is my data and imagery kept confidential?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="a"><div><p>Completely. We sign NDAs on request, store files securely, and never reuse or publish your images without written permission. Your work stays yours.</p></div></div>
+      </div>
+      <div class="faq reveal">
+        <button class="q" aria-expanded="false">How do I send you my images?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="a"><div><p>Whatever's easiest — Google Drive, Dropbox, WeTransfer, or our secure upload portal. Just share a link in your project brief and we'll take it from there.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Get In Touch</span>
+      <h2>Let's Work Together</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="cinfo reveal">
+        <h3>Tell us about your project</h3>
+        <p class="lead">Share a few details and we'll come back with a free quote and turnaround estimate, usually within a few hours.</p>
+        <div class="crow"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="ct"><b>Studio</b><span>SCO 273, IT Park Road, Sector 13, Chandigarh, India</span></div></div>
+        <div class="crow"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div><div class="ct"><b>Phone</b><span><a href="tel:+919501156566">+91 95011 56566</a></span></div></div>
+        <div class="crow"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><div class="ct"><b>Email</b><span><a href="mailto:Info@mayaweb.com">Info@mayaweb.com</a></span></div></div>
+        <div class="csocials" style="margin-top:24px;">
+          <a href="https://instagram.com/mayaweb.ig" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+          <a href="https://linkedin.com/company/mayaweb-ig" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://youtube.com/@mayaweb_in" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
+        </div>
+      </div>
+
+      <form class="cform reveal" data-delay="1" id="briefForm" novalidate>
+        <div id="formFields">
+          <div class="frow">
+            <div class="field"><label>Name <span class="req">*</span></label><input type="text" name="name" required placeholder="Your name"/></div>
+            <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" required placeholder="you@email.com"/></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>Phone</label><input type="tel" name="phone" placeholder="+91…"/></div>
+            <div class="field"><label>Service needed <span class="req">*</span></label>
+              <select name="service" required>
+                <option value="" disabled selected>Select a service</option>
+                <option>Product Editing</option>
+                <option>Portrait Retouching</option>
+                <option>Color Grading</option>
+                <option>Bulk / High-Volume</option>
+                <option>Real Estate Editing</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>Number of images</label><input type="text" name="count" placeholder="e.g. 250"/></div>
+            <div class="field"><label>Deadline</label><input type="date" name="deadline"/></div>
+          </div>
+          <div class="field"><label>File sharing link</label><input type="url" name="filelink" placeholder="Google Drive / WeTransfer URL"/></div>
+          <div class="field"><label>Message / Brief</label><textarea name="message" placeholder="Tell us your style, requirements and anything else we should know."></textarea></div>
+          <button type="submit" class="btn btn-gold">Send My Brief →</button>
+          <p class="form-note">We reply to every brief within a few hours during business days.</p>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          <h3>Brief received!</h3>
+          <p>Thanks — we've got your project details and will be in touch shortly with a quote.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="fbrand">
+        <a class="brand" href="#home"><svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M5 33 L17 7 L23 20 L20 27 L13 27 Z" fill="#f5a623"/><path d="M35 33 L23 7 L17 20 L20 27 L27 27 Z" fill="#f5a623" opacity="0.62"/></svg><span class="word">Maya<b>Web</b></span></a>
+        <p>Professional photo editing and retouching for brands and photographers who refuse to look ordinary. We edit. You shine.</p>
+      </div>
+      <div class="fcol">
+        <h4>Services</h4>
+        <a href="#services">Product Editing</a>
+        <a href="#services">Portrait Retouching</a>
+        <a href="#services">Color Grading</a>
+        <a href="#services">Bulk Editing</a>
+        <a href="#services">Real Estate</a>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <a href="#about">About Us</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="fcol">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Confidentiality</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MayaWeb. All rights reserved.</span>
+      <span>Crafted in Chandigarh 🇮🇳 &nbsp;|&nbsp; Serving clients worldwide</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- Theme toggle ---------- */
+(function(){
+  const root = document.documentElement;
+  const saved = localStorage.getItem('maya-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) root.setAttribute('data-theme','dark');
+  document.getElementById('themeToggle').addEventListener('click', ()=>{
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('maya-theme', next);
+  });
+})();
+
+/* ---------- Nav scrolled state ---------- */
+const nav = document.getElementById('nav');
+addEventListener('scroll', ()=> nav.classList.toggle('scrolled', scrollY > 8), {passive:true});
+
+/* ---------- Mobile menu ---------- */
+const mm = document.getElementById('mobileMenu');
+const openMM = ()=>{ mm.classList.add('open'); document.getElementById('hamburger').setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+const closeMM = ()=>{ mm.classList.remove('open'); document.getElementById('hamburger').setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+document.getElementById('hamburger').addEventListener('click', openMM);
+document.getElementById('mmClose').addEventListener('click', closeMM);
+mm.querySelectorAll('a').forEach(a=> a.addEventListener('click', closeMM));
+
+/* ---------- Before/After sliders ---------- */
+document.querySelectorAll('[data-ba]').forEach(ba=>{
+  const range = ba.querySelector('input[type=range]');
+  const before = ba.querySelector('.before-wrap');
+  const handle = ba.querySelector('.handle');
+  const set = v => { before.style.width = v + '%'; if(handle) handle.style.left = v + '%'; };
+  set(range.value);
+  range.addEventListener('input', ()=> set(range.value));
+});
+
+/* ---------- Scroll reveal ---------- */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+}, {threshold: 0.12, rootMargin: '0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+/* ---------- Count-up stats ---------- */
+const fmt = n => n >= 1000 ? Math.round(n/1000) + 'K' : n;
+const statsObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    statsObs.unobserve(e.target);
+    e.target.querySelectorAll('[data-count]').forEach(el=>{
+      const target = +el.dataset.count, suffix = el.dataset.suffix || '';
+      const dur = 1500, start = performance.now();
+      const tick = now =>{
+        const p = Math.min((now-start)/dur, 1);
+        const eased = 1 - Math.pow(1-p, 3);
+        el.textContent = fmt(Math.round(target*eased)) + (p===1?suffix:'');
+        if(p<1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  });
+}, {threshold: 0.4});
+const statsEl = document.getElementById('stats');
+if(statsEl) statsObs.observe(statsEl);
+
+/* ---------- FAQ accordion ---------- */
+document.querySelectorAll('.faq .q').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const item = btn.closest('.faq');
+    const open = item.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+});
+
+/* ---------- Contact form ---------- */
+document.getElementById('briefForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const form = e.target;
+  if(!form.checkValidity()){ form.reportValidity(); return; }
+  document.getElementById('formFields').style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+});
+</script>
+</body>
+</html>
